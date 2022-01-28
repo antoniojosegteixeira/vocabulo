@@ -10,7 +10,7 @@ const connect = async () => {
         useUnifiedTopology: true,
       })
       .then(() => {
-        connection.isConnected = db.connections[0].readyState;
+        connection.isConnected = true;
         console.log("New connection");
       });
   } catch (err) {
