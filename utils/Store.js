@@ -15,6 +15,14 @@ const reducer = (state, action) => {
       return state.currentWord.length === 5
         ? state
         : { ...state, currentWord: state.currentWord + action.payload };
+    case "REMOVE_LETTER":
+      if (state.currentWord.length >= 1) {
+        const newWord = state.currentWord.slice(0, -1);
+        return { ...state, currentWord: newWord };
+      } else {
+        return state;
+      }
+
     default:
       return state;
   }

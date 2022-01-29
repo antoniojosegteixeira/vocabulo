@@ -12,7 +12,7 @@ const Row = ({ number }) => {
     <div className={styles.row}>
       {[...Array(n)].map((e, i) => (
         <div key={`${number}${i}`} className={styles.letterBox}>
-          {active && currentWord.charAt(i)}
+          <span>{active && currentWord.charAt(i)}</span>
         </div>
       ))}
     </div>

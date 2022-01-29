@@ -1,20 +1,22 @@
 .gameWrapper {
   max-width: 350px;
-  margin: 0.5rem auto;
+  margin: 0.4rem auto;
 }
 
 .row {
   width: 100%;
   display: inline-flex;
-  gap: 4px;
+  vertical-align: middle;
 }
 
 .letterBox {
+  margin: 2px;
   width: 20%;
-  height: 60px;
+  min-height: 60px;
   border: 2px solid rgba(126, 126, 126, 0.685);
   text-transform: uppercase;
   text-align: center;
-  line-height: 50px;
   font-size: 2rem;
+  line-height: 50px;
+  overflow: hidden;
 }
