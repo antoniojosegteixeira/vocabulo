@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Store } from "../utils/Store";
 import styles from "../styles/Keyboard.module.css";
 
 const letters = [
@@ -8,7 +9,11 @@ const letters = [
 ];
 
 export default function Keyboard() {
-  console.log(letters);
+  const { state, dispatch } = useContext(Store);
+  const { round } = state;
+
+  console.log(round);
+
   return (
     <div className={styles.wrapper}>
       {letters.map((item) => {

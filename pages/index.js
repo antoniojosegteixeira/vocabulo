@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import db from "../utils/db";
 import Word from "../models/Word";
 import styles from "../styles/Home.module.css";

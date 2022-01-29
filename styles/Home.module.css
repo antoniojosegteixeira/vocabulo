@@ -21,13 +21,13 @@
 .row {
   width: 100%;
   display: inline-flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .letterBox {
   width: 20%;
   min-height: 60px;
-  border: 2px solid rgb(126, 126, 126);
+  border: 2px solid rgba(126, 126, 126, 0.685);
 }
 
 @media (max-width: 600px) {
