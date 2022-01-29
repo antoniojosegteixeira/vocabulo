@@ -1,0 +1,16 @@
+.gameWrapper {
+  max-width: 350px;
+  margin: 0.5rem auto;
+}
+
+.row {
+  width: 100%;
+  display: inline-flex;
+  gap: 4px;
+}
+
+.letterBox {
+  width: 20%;
+  min-height: 60px;
+  border: 2px solid rgba(126, 126, 126, 0.685);
+}
