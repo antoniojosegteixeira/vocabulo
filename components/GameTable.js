@@ -18,8 +18,6 @@ export default function GameTable() {
   const { state, dispatch } = useContext(Store);
   const { round } = state;
 
-  console.log(round);
-
   return (
     <div className={styles.gameWrapper}>
       <Row />

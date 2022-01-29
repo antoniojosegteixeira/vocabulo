@@ -10,9 +10,9 @@ const letters = [
 
 export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
-  const { round } = state;
+  const { round, currentWord } = state;
 
-  console.log(round);
+  console.log(round, currentWord);
 
   return (
     <div className={styles.wrapper}>
@@ -21,7 +21,13 @@ export default function Keyboard() {
           <div key={item} className={styles.row}>
             {item.map((letter) => {
               return (
-                <button key={letter} className={styles.keyboardKey}>
+                <button
+                  key={letter}
+                  className={styles.keyboardKey}
+                  onClick={() =>
+                    dispatch({ type: "ADD_LETTER", payload: letter })
+                  }
+                >
                   {letter}
                 </button>
               );
