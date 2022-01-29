@@ -7,7 +7,6 @@ const Row = ({ number }) => {
   const { round, currentWord, words } = state;
   const active = number === round;
   const n = 5;
-  console.log("row number", number, words, "PALAVRA DESSA ROW", words[number]);
 
   return (
     <div className={styles.row}>
