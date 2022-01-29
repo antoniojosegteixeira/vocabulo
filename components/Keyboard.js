@@ -10,7 +10,7 @@ const letters = [
 
 export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord } = state;
+  const { round, currentWord, isRight } = state;
 
   const dispatchAction = (letter) => {
     switch (letter) {
@@ -18,7 +18,9 @@ export default function Keyboard() {
         dispatch({ type: "REMOVE_LETTER" });
         break;
       case "enter":
-        dispatch({ type: "ENTER_WORD" });
+        if (!isRight) {
+          dispatch({ type: "ENTER_WORD" });
+        }
         break;
 
       default:

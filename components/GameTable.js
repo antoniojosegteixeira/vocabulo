@@ -4,12 +4,12 @@ import styles from "../styles/GameTable.module.css";
 
 const Row = ({ number }) => {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord, words } = state;
+  const { round, words, currentWord, isRight } = state;
   const active = number === round;
   const n = 5;
 
   return (
-    <div className={styles.row}>
+    <div className={`${styles.row} ${isRight && active && styles.win}`}>
       {[...Array(n)].map((e, i) => (
         <div key={`${number}${i}`} className={styles.letterBox}>
           <span>

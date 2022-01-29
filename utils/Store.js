@@ -3,14 +3,18 @@ import { createContext, useReducer } from "react";
 export const Store = createContext();
 
 const initialState = {
+  todaysWord: "",
   round: 1,
   currentWord: "",
   words: [],
   letters: [],
+  isRight: false,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "TODAYS_WORD":
+      return { ...state, todaysWord: action.payload };
     case "ADD_LETTER":
       return state.currentWord.length === 5
         ? state
@@ -24,14 +28,27 @@ const reducer = (state, action) => {
       }
     case "ENTER_WORD":
       if (state.currentWord.length === 5) {
+        // Adding the word
         const newWordArray = [...state.words];
         newWordArray.push(state.currentWord);
-        return {
-          ...state,
-          currentWord: "",
-          words: newWordArray,
-          round: state.round + 1,
-        };
+
+        //Checking its letters
+        const isRight = state.currentWord === state.todaysWord;
+
+        if (isRight) {
+          return {
+            ...state,
+            words: newWordArray,
+            isRight,
+          };
+        } else {
+          return {
+            ...state,
+            currentWord: "",
+            words: newWordArray,
+            round: state.round + 1,
+          };
+        }
       } else {
         return state;
       }

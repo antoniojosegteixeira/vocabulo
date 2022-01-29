@@ -9,6 +9,10 @@
   vertical-align: middle;
 }
 
+.win {
+  color: rgb(0, 92, 0);
+}
+
 .letterBox {
   margin: 2px;
   width: 20%;

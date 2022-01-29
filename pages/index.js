@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Store } from "../utils/Store";
 import db from "../utils/db";
 import Word from "../models/Word";
 import styles from "../styles/Home.module.css";
@@ -6,6 +7,14 @@ import Keyboard from "../components/Keyboard";
 import GameTable from "../components/GameTable";
 
 export default function Home({ data }) {
+  const { state, dispatch } = useContext(Store);
+
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: "TODAYS_WORD", payload: data });
+    }
+  }, [data]);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>VOCÁBULO</h1>
