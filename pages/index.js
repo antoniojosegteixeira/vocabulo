@@ -51,8 +51,8 @@ export default function Home({ data }) {
           <div className={styles.letterBox}></div>
           <div className={styles.letterBox}></div>
         </div>
-        <Keyboard />
       </div>
+      <Keyboard />
     </div>
   );
 }

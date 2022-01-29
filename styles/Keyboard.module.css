@@ -1,7 +1,5 @@
 .wrapper {
   width: 100%;
-  max-height: 200px;
-  background-color: rgba(87, 87, 87, 0.287);
 }
 
 .row {
@@ -11,9 +9,17 @@
 }
 
 .keyboardKey {
-  min-width: 30px;
-  height: 30px;
-  background-color: rgba(87, 87, 87, 0.287);
-  border: 1px solid rgb(126, 126, 126);
+  padding: 1.2rem 0.8rem;
+  min-width: 45px;
+  border-radius: 3px;
+  background-color: rgb(72, 200, 125);
   text-align: center;
+  margin: 3px;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+  font-size: large;
+}
+
+.keyboardKey:active {
+  background-color: rgba(72, 200, 125, 0.8);
 }

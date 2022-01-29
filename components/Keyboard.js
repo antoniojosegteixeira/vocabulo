@@ -16,9 +16,9 @@ export default function Keyboard() {
           <div key={item} className={styles.row}>
             {item.map((letter) => {
               return (
-                <div key={letter} className={styles.keyboardKey}>
+                <button key={letter} className={styles.keyboardKey}>
                   {letter}
-                </div>
+                </button>
               );
             })}
           </div>

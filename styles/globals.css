@@ -20,3 +20,13 @@ a {
 h1 {
   margin: 0;
 }
+
+button {
+  outline: none;
+  border: none;
+}
+button:active {
+  border-style: outset;
+  border: none;
+  outline: none;
+}
