@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100%;
+  max-height: 200px;
+  background-color: rgba(87, 87, 87, 0.287);
+}
+
+.row {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.keyboardKey {
+  min-width: 30px;
+  height: 30px;
+  background-color: rgba(87, 87, 87, 0.287);
+  border: 1px solid rgb(126, 126, 126);
+  text-align: center;
+}

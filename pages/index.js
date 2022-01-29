@@ -1,6 +1,7 @@
 import db from "../utils/db";
 import Word from "../models/Word";
 import styles from "../styles/Home.module.css";
+import Keyboard from "../components/Keyboard";
 
 export default function Home({ data }) {
   return (
@@ -50,6 +51,7 @@ export default function Home({ data }) {
           <div className={styles.letterBox}></div>
           <div className={styles.letterBox}></div>
         </div>
+        <Keyboard />
       </div>
     </div>
   );
