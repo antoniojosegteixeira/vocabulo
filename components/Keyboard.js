@@ -15,13 +15,18 @@ export default function Keyboard() {
   console.log(round, currentWord);
 
   const dispatchAction = (letter) => {
-    if (letter === "delete") {
-      dispatch({ type: "REMOVE_LETTER" });
-      return;
-    }
-    if (letter === "enter") return;
+    switch (letter) {
+      case "delete":
+        dispatch({ type: "REMOVE_LETTER" });
+        break;
+      case "enter":
+        dispatch({ type: "ENTER_WORD" });
+        break;
 
-    dispatch({ type: "ADD_LETTER", payload: letter });
+      default:
+        dispatch({ type: "ADD_LETTER", payload: letter });
+        break;
+    }
   };
 
   return (

@@ -22,6 +22,15 @@ const reducer = (state, action) => {
       } else {
         return state;
       }
+    case "ENTER_WORD":
+      const newWordArray = [...state.words];
+      newWordArray.push(state.currentWord);
+      return {
+        ...state,
+        currentWord: "",
+        words: newWordArray,
+        round: state.round + 1,
+      };
 
     default:
       return state;

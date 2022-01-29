@@ -4,15 +4,20 @@ import styles from "../styles/GameTable.module.css";
 
 const Row = ({ number }) => {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord } = state;
+  const { round, currentWord, words } = state;
   const active = number === round;
   const n = 5;
+  console.log("row number", number, words, "PALAVRA DESSA ROW", words[number]);
 
   return (
     <div className={styles.row}>
       {[...Array(n)].map((e, i) => (
         <div key={`${number}${i}`} className={styles.letterBox}>
-          <span>{active && currentWord.charAt(i)}</span>
+          <span>
+            {active
+              ? currentWord.charAt(i)
+              : words[number - 1] !== undefined && words[number - 1].charAt(i)}
+          </span>
         </div>
       ))}
     </div>
