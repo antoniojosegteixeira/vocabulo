@@ -12,8 +12,6 @@ export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
   const { round, currentWord } = state;
 
-  console.log(round, currentWord);
-
   const dispatchAction = (letter) => {
     switch (letter) {
       case "delete":

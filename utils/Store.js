@@ -23,14 +23,18 @@ const reducer = (state, action) => {
         return state;
       }
     case "ENTER_WORD":
-      const newWordArray = [...state.words];
-      newWordArray.push(state.currentWord);
-      return {
-        ...state,
-        currentWord: "",
-        words: newWordArray,
-        round: state.round + 1,
-      };
+      if (state.currentWord.length === 5) {
+        const newWordArray = [...state.words];
+        newWordArray.push(state.currentWord);
+        return {
+          ...state,
+          currentWord: "",
+          words: newWordArray,
+          round: state.round + 1,
+        };
+      } else {
+        return state;
+      }
 
     default:
       return state;
