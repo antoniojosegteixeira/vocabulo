@@ -14,6 +14,13 @@ export default function Keyboard() {
 
   console.log(round, currentWord);
 
+  const dispatchAction = (letter) => {
+    if (letter === "delete") return;
+    if (letter === "enter") return;
+
+    dispatch({ type: "ADD_LETTER", payload: letter });
+  };
+
   return (
     <div className={styles.wrapper}>
       {letters.map((item) => {
@@ -24,9 +31,7 @@ export default function Keyboard() {
                 <button
                   key={letter}
                   className={styles.keyboardKey}
-                  onClick={() =>
-                    dispatch({ type: "ADD_LETTER", payload: letter })
-                  }
+                  onClick={() => dispatchAction(letter)}
                 >
                   {letter}
                 </button>

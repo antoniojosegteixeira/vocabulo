@@ -12,7 +12,9 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_LETTER":
-      return { ...state, currentWord: state.currentWord + action.payload };
+      return state.currentWord.length === 5
+        ? state
+        : { ...state, currentWord: state.currentWord + action.payload };
     default:
       return state;
   }
