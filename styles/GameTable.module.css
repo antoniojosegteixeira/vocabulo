@@ -11,6 +11,10 @@
 
 .letterBox {
   width: 20%;
-  min-height: 60px;
+  height: 60px;
   border: 2px solid rgba(126, 126, 126, 0.685);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 50px;
+  font-size: 2rem;
 }
