@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import styles from "../styles/Keyboard.module.css";
+import axios from "axios";
 
 const letters = [
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -42,14 +43,25 @@ export default function Keyboard() {
     };
   };
 
-  const dispatchAction = (letter) => {
+  const dispatchAction = async (letter) => {
     switch (letter) {
       case "delete":
         dispatch({ type: "REMOVE_LETTER" });
         break;
       case "enter":
-        if (!isRight) {
-          dispatch({ type: "ENTER_WORD", payload: checkMatching() });
+        if (!isRight && currentWord.length === 5) {
+          // Checking if the word exists on Dictionary API
+          try {
+            const data = await axios.get("/api/checkword", {
+              params: {
+                query: currentWord,
+              },
+            });
+
+            dispatch({ type: "ENTER_WORD", payload: checkMatching() });
+          } catch (err) {
+            console.log(err);
+          }
         }
         break;
 
@@ -65,8 +77,6 @@ export default function Keyboard() {
     if (totalLetters.includes(letter)) return styles.incorrectGuessedLetter;
     return "";
   };
-
-  console.log({ totalLetters, guessedPosition, guessedLetters, words });
 
   return (
     <div className={styles.wrapper}>
