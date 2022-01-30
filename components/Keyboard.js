@@ -10,7 +10,23 @@ const letters = [
 
 export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord, isRight } = state;
+  const { round, currentWord, isRight, todaysWord } = state;
+
+  // Check matching ocurrences
+  const checkMatching = () => {
+    const correctWord = todaysWord.split("");
+    const guessWord = currentWord.split("");
+
+    const guessedLetters = correctWord.filter((letter) => {
+      return guessWord.includes(letter);
+    });
+
+    const matchingWordPosition = correctWord.map((letter, i) => {
+      return correctWord[i] === guessWord[i] ? letter : false;
+    });
+
+    return { guessedWord: currentWord, guessedLetters, matchingWordPosition };
+  };
 
   const dispatchAction = (letter) => {
     switch (letter) {
@@ -19,7 +35,7 @@ export default function Keyboard() {
         break;
       case "enter":
         if (!isRight) {
-          dispatch({ type: "ENTER_WORD" });
+          dispatch({ type: "ENTER_WORD", payload: checkMatching() });
         }
         break;
 

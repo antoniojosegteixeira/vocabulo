@@ -4,7 +4,7 @@ export const Store = createContext();
 
 const initialState = {
   todaysWord: "",
-  round: 1,
+  round: 0,
   currentWord: "",
   words: [],
   letters: [],
@@ -28,24 +28,23 @@ const reducer = (state, action) => {
       }
     case "ENTER_WORD":
       if (state.currentWord.length === 5) {
-        // Adding the word
-        const newWordArray = [...state.words];
-        newWordArray.push(state.currentWord);
+        console.log("word is", action.payload);
 
-        //Checking its letters
-        const isRight = state.currentWord === state.todaysWord;
+        const isRight = action.payload.matchingWordPosition.every(
+          (bool) => bool === true
+        );
 
         if (isRight) {
           return {
             ...state,
-            words: newWordArray,
+            words: [...state.words, action.payload],
             isRight,
           };
         } else {
           return {
             ...state,
             currentWord: "",
-            words: newWordArray,
+            words: [...state.words, action.payload],
             round: state.round + 1,
           };
         }

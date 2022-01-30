@@ -2,26 +2,3 @@
   max-width: 350px;
   margin: 0.4rem auto;
 }
-
-.row {
-  width: 100%;
-  display: inline-flex;
-  vertical-align: middle;
-}
-
-.win {
-  color: rgb(0, 92, 0);
-}
-
-.letterBox {
-  margin: 2px;
-  width: 20%;
-  min-height: 60px;
-  border: 2px solid rgba(126, 126, 126, 0.685);
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 2rem;
-  line-height: 50px;
-  overflow: hidden;
-  user-select: none;
-}
