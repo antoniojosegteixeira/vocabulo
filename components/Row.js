@@ -26,7 +26,7 @@ export default function Row({ number }) {
         return styles.correctLetter;
       }
 
-      return "";
+      return styles.incorrectLetter;
     }
 
     if (active) {
