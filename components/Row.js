@@ -4,8 +4,16 @@ import styles from "../styles/Row.module.css";
 
 export default function Row({ number }) {
   const { state, dispatch } = useContext(Store);
-  const { round, words, currentWord, isRight, todaysWord, guessedLetters } =
-    state;
+  const {
+    round,
+    words,
+    currentWord,
+    isRight,
+    todaysWord,
+    guessedLetters,
+    guessedPosition,
+  } = state;
+
   const active = number === round;
   const n = 5;
 

@@ -7,8 +7,9 @@ const initialState = {
   round: 0,
   currentWord: "",
   words: [],
+  guessedPosition: [],
   guessedLetters: [],
-  usedLetters: [],
+  totalLetters: [],
   isRight: false,
 };
 
@@ -33,38 +34,47 @@ const reducer = (state, action) => {
           (bool) => bool === true
         );
 
+        // Adding the new word to the board
+        // Including information about the matching positions
+        const words = [
+          ...state.words,
+          {
+            guessedWord: action.payload.guessedWord,
+            matchingWordPosition: action.payload.matchingWordPosition,
+          },
+        ];
+
+        // Adding the overall right position guesses to the state
+        // Used to highlight the keyboard
+        const guessedPosition = [
+          ...state.guessedPosition,
+          ...action.payload.matchingWordPosition,
+        ];
+
+        // All the correct letters entered, not specifying if it's position is matching
+        const guessedLetters = [
+          ...state.guessedLetters,
+          ...action.payload.guessedLetters,
+        ];
+
+        // Every character sent
+        const totalLetters = [
+          ...state.totalLetters,
+          ...state.currentWord.split(""),
+        ];
+
         if (isRight) {
-          return {
-            ...state,
-            words: [
-              ...state.words,
-              {
-                guessedWord: action.payload.guessedWord,
-                matchingWordPosition: action.payload.matchingWordPosition,
-              },
-            ],
-            isRight,
-            guessedLetters: [
-              ...state.guessedLetters,
-              ...action.payload.guessedLetters,
-            ],
-          };
+          // if the word is guessed right
+          return state;
         } else {
           return {
             ...state,
+            words,
+            guessedPosition,
+            guessedLetters,
+            totalLetters,
             currentWord: "",
-            words: [
-              ...state.words,
-              {
-                guessedWord: action.payload.guessedWord,
-                matchingWordPosition: action.payload.matchingWordPosition,
-              },
-            ],
             round: state.round + 1,
-            guessedLetters: [
-              ...state.guessedLetters,
-              ...action.payload.guessedLetters,
-            ],
           };
         }
       } else {

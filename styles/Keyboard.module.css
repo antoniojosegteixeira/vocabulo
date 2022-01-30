@@ -12,7 +12,7 @@
   padding: 1.2rem 0.8rem;
   min-width: 45px;
   border-radius: 3px;
-  background-color: rgb(72, 200, 125);
+  background-color: rgb(138, 138, 138);
   text-align: center;
   margin: 3px;
   text-transform: uppercase;
@@ -22,5 +22,17 @@
 }
 
 .keyboardKey:active {
-  background-color: rgba(72, 200, 125, 0.8);
+  background-color: rgb(158, 158, 158);
+}
+
+.guessedPosition {
+  background-color: rgb(24, 95, 24);
+}
+
+.guessedLetter {
+  background-color: rgb(173, 151, 28);
+}
+
+.incorrectGuessedLetter {
+  background-color: rgb(46, 53, 49);
 }

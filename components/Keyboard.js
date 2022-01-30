@@ -10,22 +10,36 @@ const letters = [
 
 export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord, isRight, todaysWord } = state;
+  const {
+    round,
+    currentWord,
+    isRight,
+    todaysWord,
+    totalLetters,
+    guessedLetters,
+    guessedPosition,
+    words,
+  } = state;
 
   // Check matching ocurrences
   const checkMatching = () => {
-    const correctWord = todaysWord.split("");
-    const guessWord = currentWord.split("");
+    //
+    const todaysWordArray = todaysWord.split("");
+    const guessedWordArray = currentWord.split("");
 
-    const guessedLetters = correctWord.filter((letter) => {
-      return guessWord.includes(letter);
+    const simpleMatchingLetters = todaysWordArray.filter((letter) => {
+      return guessedWordArray.includes(letter);
     });
 
-    const matchingWordPosition = correctWord.map((letter, i) => {
-      return correctWord[i] === guessWord[i] ? letter : false;
+    const matchingWordPosition = todaysWordArray.map((letter, i) => {
+      return todaysWordArray[i] === guessedWordArray[i] ? letter : false;
     });
 
-    return { guessedWord: currentWord, guessedLetters, matchingWordPosition };
+    return {
+      guessedWord: currentWord,
+      guessedLetters: simpleMatchingLetters,
+      matchingWordPosition,
+    };
   };
 
   const dispatchAction = (letter) => {
@@ -45,6 +59,15 @@ export default function Keyboard() {
     }
   };
 
+  const defineKeyClassName = (letter) => {
+    if (guessedPosition.includes(letter)) return styles.guessedPosition;
+    if (guessedLetters.includes(letter)) return styles.guessedLetter;
+    if (totalLetters.includes(letter)) return styles.incorrectGuessedLetter;
+    return "";
+  };
+
+  console.log({ totalLetters, guessedPosition, guessedLetters, words });
+
   return (
     <div className={styles.wrapper}>
       {letters.map((item) => {
@@ -54,7 +77,9 @@ export default function Keyboard() {
               return (
                 <button
                   key={letter}
-                  className={styles.keyboardKey}
+                  className={`${styles.keyboardKey} ${defineKeyClassName(
+                    letter
+                  )}`}
                   onClick={() => dispatchAction(letter)}
                 >
                   {letter}
