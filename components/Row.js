@@ -4,30 +4,36 @@ import styles from "../styles/Row.module.css";
 
 export default function Row({ number }) {
   const { state, dispatch } = useContext(Store);
-  const { round, words, currentWord, isRight, todaysWord } = state;
+  const { round, words, currentWord, isRight, todaysWord, guessedLetters } =
+    state;
   const active = number === round;
   const n = 5;
 
   const LetterTile = ({ position }) => {
+    // Checks if guess is at right position or just a simple guess
     function checkIfGuessedLetterIsRight() {
       if (
         words[number]?.guessedWord.charAt(position) ===
         words[number]?.matchingWordPosition[position]
       ) {
-        console.log(
-          words[number]?.guessedWord.charAt(position) ===
-            words[number]?.matchingWordPosition[position],
-          words[number]?.guessedWord.charAt(position)
-        );
+        // Return correct letter + position style
         return styles.correctPosition;
+      }
+
+      if (
+        guessedLetters.includes(words[number]?.guessedWord.charAt(position))
+      ) {
+        return styles.correctLetter;
       }
 
       return "";
     }
 
     if (active) {
+      // Just return the current word being typed
       return currentWord.charAt(position);
     } else if (words[number] !== undefined) {
+      // Returns the guessed word
       return (
         <div
           className={`${styles.insideTile} ${checkIfGuessedLetterIsRight()}`}

@@ -7,7 +7,8 @@ const initialState = {
   round: 0,
   currentWord: "",
   words: [],
-  letters: [],
+  guessedLetters: [],
+  usedLetters: [],
   isRight: false,
 };
 
@@ -28,8 +29,6 @@ const reducer = (state, action) => {
       }
     case "ENTER_WORD":
       if (state.currentWord.length === 5) {
-        console.log("word is", action.payload);
-
         const isRight = action.payload.matchingWordPosition.every(
           (bool) => bool === true
         );
@@ -37,15 +36,35 @@ const reducer = (state, action) => {
         if (isRight) {
           return {
             ...state,
-            words: [...state.words, action.payload],
+            words: [
+              ...state.words,
+              {
+                guessedWord: action.payload.guessedWord,
+                matchingWordPosition: action.payload.matchingWordPosition,
+              },
+            ],
             isRight,
+            guessedLetters: [
+              ...state.guessedLetters,
+              ...action.payload.guessedLetters,
+            ],
           };
         } else {
           return {
             ...state,
             currentWord: "",
-            words: [...state.words, action.payload],
+            words: [
+              ...state.words,
+              {
+                guessedWord: action.payload.guessedWord,
+                matchingWordPosition: action.payload.matchingWordPosition,
+              },
+            ],
             round: state.round + 1,
+            guessedLetters: [
+              ...state.guessedLetters,
+              ...action.payload.guessedLetters,
+            ],
           };
         }
       } else {
