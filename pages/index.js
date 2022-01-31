@@ -5,6 +5,7 @@ import Word from "../models/Word";
 import styles from "../styles/Home.module.css";
 import Keyboard from "../components/Keyboard";
 import GameTable from "../components/GameTable";
+import Notification from "../components/Notification";
 
 export default function Home({ data }) {
   const { state, dispatch } = useContext(Store);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Store } from "../utils/Store";
 import styles from "../styles/Row.module.css";
 
@@ -12,10 +12,20 @@ export default function Row({ number }) {
     todaysWord,
     guessedLetters,
     guessedPosition,
+    error,
   } = state;
 
   const active = number === round;
   const n = 5;
+
+  // Starts the error animation
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        dispatch({ type: "HIDE_ERROR" });
+      }, 1200);
+    }
+  }, [error, dispatch]);
 
   const LetterTile = ({ position }) => {
     // Checks if guess is at right position or just a simple guess
@@ -55,7 +65,11 @@ export default function Row({ number }) {
   };
 
   return (
-    <div className={`${styles.row} ${isRight && active && styles.win}`}>
+    <div
+      className={`${styles.row} ${isRight && active && styles.win}  ${
+        error && round === number && styles.error
+      }`}
+    >
       {[...Array(n)].map((e, position) => (
         <div key={`${number}${position}`} className={styles.letterBox}>
           <LetterTile position={position} />

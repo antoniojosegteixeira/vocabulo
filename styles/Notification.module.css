@@ -1,0 +1,12 @@
+.notification {
+  max-width: 300px;
+  min-height: 60px;
+  border-radius: 6px;
+  background-color: rgb(161, 33, 33);
+  color: white;
+  display: none;
+}
+
+.on {
+  display: block;
+}

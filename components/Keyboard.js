@@ -60,8 +60,10 @@ export default function Keyboard() {
 
             dispatch({ type: "ENTER_WORD", payload: checkMatching() });
           } catch (err) {
-            console.log(err);
+            dispatch({ type: "SHOW_ERROR" });
           }
+        } else if (currentWord.length < 5) {
+          dispatch({ type: "SHOW_ERROR" });
         }
         break;
 

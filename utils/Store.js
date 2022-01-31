@@ -12,6 +12,7 @@ const initialState = {
   guessedLetters: [],
   totalLetters: [],
   isRight: false,
+  error: false,
 };
 
 const reducer = (state, action) => {
@@ -30,7 +31,7 @@ const reducer = (state, action) => {
         return state;
       }
     case "ENTER_WORD":
-      if (state.currentWord.length === 5) {
+      if (state.currentWord.length === 5 && !state.error) {
         const isRight = action.payload.matchingWordPosition.every(
           (bool) => bool === true
         );
@@ -45,7 +46,7 @@ const reducer = (state, action) => {
           },
         ];
 
-        // Adding the overall right position guesses to the state
+        ////////// Adding the overall right position guesses to the state ////////
         // Used to highlight the keyboard
         const guessedPosition = [
           ...state.guessedPosition,
@@ -81,6 +82,12 @@ const reducer = (state, action) => {
       } else {
         return state;
       }
+
+    case "SHOW_ERROR":
+      return { ...state, error: true };
+
+    case "HIDE_ERROR":
+      return { ...state, error: false };
 
     default:
       return state;

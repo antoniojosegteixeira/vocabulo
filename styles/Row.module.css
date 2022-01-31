@@ -37,3 +37,29 @@
 .incorrectLetter {
   background-color: rgb(32, 32, 32);
 }
+
+.error > .letterBox {
+  animation: shake 0.3s ease-in-out forwards;
+}
+
+@keyframes shake {
+  0% {
+    border: 1px solid rgb(182, 36, 36);
+    transform: translateX(-4px);
+  }
+  25% {
+    border: 1px solid rgb(182, 36, 36);
+    transform: translateX(4px);
+  }
+  50% {
+    border: 1px solid rgb(182, 36, 36);
+    transform: translateX(-4px);
+  }
+  75% {
+    border: 1px solid rgb(182, 36, 36);
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
