@@ -1,10 +1,13 @@
 import { StoreProvider } from "../utils/Store";
 import "../styles/globals.css";
+import ManageNotification from "../components/ManageNotification";
 
 function MyApp({ Component, pageProps }) {
   return (
     <StoreProvider>
-      <Component {...pageProps} />
+      <ManageNotification>
+        <Component {...pageProps} />
+      </ManageNotification>
     </StoreProvider>
   );
 }

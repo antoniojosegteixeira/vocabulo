@@ -9,17 +9,19 @@ import Notification from "../components/Notification";
 
 export default function Home({ data }) {
   const { state, dispatch } = useContext(Store);
+  const { error } = state;
 
   useEffect(() => {
     if (data) {
       dispatch({ type: "TODAYS_WORD", payload: data });
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>VOCÁBULO</h1>
       <hr className={styles.solid}></hr>
+      <Notification />
       <GameTable />
       <Keyboard />
     </div>

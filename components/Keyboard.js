@@ -20,6 +20,7 @@ export default function Keyboard() {
     guessedLetters,
     guessedPosition,
     words,
+    error,
   } = state;
 
   // Check matching ocurrences
@@ -49,7 +50,7 @@ export default function Keyboard() {
         dispatch({ type: "REMOVE_LETTER" });
         break;
       case "enter":
-        if (!isRight && currentWord.length === 5) {
+        if (!isRight && currentWord.length === 5 && !error.active) {
           // Checking if the word exists on Dictionary API
           try {
             const data = await axios.get("/api/checkword", {
@@ -60,7 +61,11 @@ export default function Keyboard() {
 
             dispatch({ type: "ENTER_WORD", payload: checkMatching() });
           } catch (err) {
-            dispatch({ type: "SHOW_ERROR" });
+            dispatch({
+              type: "SHOW_ERROR",
+              payload:
+                err.response.status === 400 ? "Palavra inválida!" : "Erro",
+            });
           }
         } else if (currentWord.length < 5) {
           dispatch({ type: "SHOW_ERROR" });

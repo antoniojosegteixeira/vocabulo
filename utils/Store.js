@@ -1,5 +1,4 @@
-import { createContext, useReducer } from "react";
-import axios from "axios";
+import { createContext, useReducer, useEffect } from "react";
 
 export const Store = createContext();
 
@@ -12,7 +11,7 @@ const initialState = {
   guessedLetters: [],
   totalLetters: [],
   isRight: false,
-  error: false,
+  error: { active: false, message: "" },
 };
 
 const reducer = (state, action) => {
@@ -31,7 +30,7 @@ const reducer = (state, action) => {
         return state;
       }
     case "ENTER_WORD":
-      if (state.currentWord.length === 5 && !state.error) {
+      if (state.currentWord.length === 5) {
         const isRight = action.payload.matchingWordPosition.every(
           (bool) => bool === true
         );
@@ -84,10 +83,13 @@ const reducer = (state, action) => {
       }
 
     case "SHOW_ERROR":
-      return { ...state, error: true };
+      return {
+        ...state,
+        error: { active: true, message: action.payload ? action.payload : "" },
+      };
 
     case "HIDE_ERROR":
-      return { ...state, error: false };
+      return { ...state, error: { active: false, message: "" } };
 
     default:
       return state;

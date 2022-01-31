@@ -18,15 +18,6 @@ export default function Row({ number }) {
   const active = number === round;
   const n = 5;
 
-  // Starts the error animation
-  useEffect(() => {
-    if (error) {
-      setTimeout(() => {
-        dispatch({ type: "HIDE_ERROR" });
-      }, 1200);
-    }
-  }, [error, dispatch]);
-
   const LetterTile = ({ position }) => {
     // Checks if guess is at right position or just a simple guess
     function checkIfGuessedLetterIsRight() {
@@ -67,7 +58,7 @@ export default function Row({ number }) {
   return (
     <div
       className={`${styles.row} ${isRight && active && styles.win}  ${
-        error && round === number && styles.error
+        error.active && round === number && styles.error
       }`}
     >
       {[...Array(n)].map((e, position) => (
