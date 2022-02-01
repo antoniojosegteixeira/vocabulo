@@ -6,10 +6,11 @@ import styles from "../styles/Home.module.css";
 import Keyboard from "../components/Keyboard";
 import GameTable from "../components/GameTable";
 import Notification from "../components/Notification";
+import Modal from "../components/Modal";
 
 export default function Home({ data }) {
   const { state, dispatch } = useContext(Store);
-  const { error } = state;
+  const { round } = state;
 
   useEffect(() => {
     if (data) {
@@ -17,14 +18,23 @@ export default function Home({ data }) {
     }
   }, [data, dispatch]);
 
+  useEffect(() => {
+    if (round > 5) {
+      dispatch({ type: "FINISH_GAME" });
+    }
+  }, [round, dispatch]);
+
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>VOCÁBULO</h1>
-      <hr className={styles.solid}></hr>
-      <Notification />
-      <GameTable />
-      <Keyboard />
-    </div>
+    <>
+      <Modal />
+      <div className={styles.container}>
+        <h1 className={styles.title}>VOCÁBULO</h1>
+        <hr className={styles.solid}></hr>
+        <Notification />
+        <GameTable />
+        <Keyboard />
+      </div>
+    </>
   );
 }
 

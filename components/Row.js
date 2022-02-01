@@ -8,7 +8,7 @@ export default function Row({ number }) {
     round,
     words,
     currentWord,
-    isRight,
+    isGameFinished,
     todaysWord,
     guessedLetters,
     guessedPosition,
@@ -20,7 +20,7 @@ export default function Row({ number }) {
 
   const LetterTile = ({ position }) => {
     // Checks if guess is at right position or just a simple guess
-    function checkIfGuessedLetterIsRight() {
+    function checkIfGuessedLetterisGameFinished() {
       if (
         words[number]?.guessedWord.charAt(position) ===
         words[number]?.matchingWordPosition[position]
@@ -45,7 +45,9 @@ export default function Row({ number }) {
       // Returns the guessed word
       return (
         <div
-          className={`${styles.insideTile} ${checkIfGuessedLetterIsRight()}`}
+          className={`${
+            styles.insideTile
+          } ${checkIfGuessedLetterisGameFinished()}`}
         >
           <span>{words[number]?.guessedWord.charAt(position)}</span>
         </div>
@@ -57,7 +59,7 @@ export default function Row({ number }) {
 
   return (
     <div
-      className={`${styles.row} ${isRight && active && styles.win}  ${
+      className={`${styles.row} ${isGameFinished && active && styles.win}  ${
         error.active && round === number && styles.error
       }`}
     >

@@ -5,8 +5,6 @@ export default function ManageNotification({ children }) {
   const { state, dispatch } = useContext(Store);
   const { error } = state;
 
-  console.log(error);
-
   // Resets the error message
   useEffect(() => {
     if (error.active) {
@@ -14,7 +12,7 @@ export default function ManageNotification({ children }) {
         dispatch({ type: "HIDE_ERROR" });
       }, 1200);
     }
-  }, [error]);
+  }, [error, dispatch]);
 
   return <>{children}</>;
 }

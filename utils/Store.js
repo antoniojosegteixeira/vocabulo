@@ -10,7 +10,8 @@ const initialState = {
   guessedPosition: [],
   guessedLetters: [],
   totalLetters: [],
-  isRight: false,
+  isGameFinished: false,
+  win: false,
   error: { active: false, message: "" },
 };
 
@@ -31,10 +32,10 @@ const reducer = (state, action) => {
       }
     case "ENTER_WORD":
       if (state.currentWord.length === 5) {
-        const isRight = action.payload.matchingWordPosition.every(
-          (bool) => bool === true
+        // Checking if the game is finished
+        const isGameFinished = action.payload.matchingWordPosition.every(
+          (bool) => bool !== false
         );
-
         // Adding the new word to the board
         // Including information about the matching positions
         const words = [
@@ -64,9 +65,17 @@ const reducer = (state, action) => {
           ...state.currentWord.split(""),
         ];
 
-        if (isRight) {
+        if (isGameFinished) {
           // if the word is guessed right
-          return state;
+          return {
+            ...state,
+            words,
+            guessedPosition,
+            guessedLetters,
+            totalLetters,
+            isGameFinished: true,
+            win: true,
+          };
         } else {
           return {
             ...state,
@@ -91,6 +100,8 @@ const reducer = (state, action) => {
     case "HIDE_ERROR":
       return { ...state, error: { active: false, message: "" } };
 
+    case "FINISH_GAME":
+      return { ...state, isGameFinished: true };
     default:
       return state;
   }

@@ -14,7 +14,7 @@ export default function Keyboard() {
   const {
     round,
     currentWord,
-    isRight,
+    isGameFinished,
     todaysWord,
     totalLetters,
     guessedLetters,
@@ -50,7 +50,7 @@ export default function Keyboard() {
         dispatch({ type: "REMOVE_LETTER" });
         break;
       case "enter":
-        if (!isRight && currentWord.length === 5 && !error.active) {
+        if (!isGameFinished && currentWord.length === 5 && !error.active) {
           // Checking if the word exists on Dictionary API
           try {
             const data = await axios.get("/api/checkword", {
