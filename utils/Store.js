@@ -6,10 +6,8 @@ const initialState = {
   todaysWord: "",
   round: 0,
   currentWord: "",
-  words: [],
-  guessedPosition: [],
-  guessedLetters: [],
-  totalLetters: [],
+  guessedCharacters: [],
+  rows: [],
   isGameFinished: false,
   win: false,
   error: { active: false, message: "" },
@@ -32,59 +30,33 @@ const reducer = (state, action) => {
       }
     case "ENTER_WORD":
       if (state.currentWord.length === 5) {
+        const isGameFinished = false;
         // Checking if the game is finished
+        /*
         const isGameFinished = action.payload.matchingWordPosition.every(
           (bool) => bool !== false
         );
+        */
         // Adding the new word to the board
         // Including information about the matching positions
-        const words = [
-          ...state.words,
-          {
-            guessedWord: action.payload.guessedWord,
-            matchingWordPosition: action.payload.matchingWordPosition,
-          },
-        ];
-
-        ////////// Adding the overall right position guesses to the state ////////
-        // Used to highlight the keyboard
-        const guessedPosition = [
-          ...state.guessedPosition,
-          ...action.payload.matchingWordPosition,
-        ];
-
-        // All the correct letters entered, not specifying if it's position is matching
-        const guessedLetters = [
-          ...state.guessedLetters,
-          ...action.payload.guessedLetters,
-        ];
-
-        // Every character sent
-        const totalLetters = [
-          ...state.totalLetters,
-          ...state.currentWord.split(""),
-        ];
+        console.log("new row reducer", action.payload);
+        const newRow = {
+          wordTried: state.currentWord,
+        };
 
         if (isGameFinished) {
           // if the word is guessed right
           return {
             ...state,
-            words,
-            guessedPosition,
-            guessedLetters,
-            totalLetters,
             isGameFinished: true,
             win: true,
           };
         } else {
           return {
             ...state,
-            words,
-            guessedPosition,
-            guessedLetters,
-            totalLetters,
             currentWord: "",
             round: state.round + 1,
+            rows: [...state.rows, newRow],
           };
         }
       } else {

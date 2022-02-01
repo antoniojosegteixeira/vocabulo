@@ -6,8 +6,6 @@ export default function Modal() {
   const { state, dispatch } = useContext(Store);
   const { isGameFinished, round, win, words } = state;
 
-  console.log(isGameFinished, words);
-
   return (
     <div className={`${styles.modal} ${isGameFinished && styles.visible}`}>
       <div className={styles.modalBox}>

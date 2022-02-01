@@ -11,37 +11,12 @@ const letters = [
 
 export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
-  const {
-    round,
-    currentWord,
-    isGameFinished,
-    todaysWord,
-    totalLetters,
-    guessedLetters,
-    guessedPosition,
-    words,
-    error,
-  } = state;
+  const { round, currentWord, isGameFinished, todaysWord, rows, error } = state;
 
   // Check matching ocurrences
-  const checkMatching = () => {
+  const createRow = () => {
     //
-    const todaysWordArray = todaysWord.split("");
-    const guessedWordArray = currentWord.split("");
-
-    const simpleMatchingLetters = todaysWordArray.filter((letter) => {
-      return guessedWordArray.includes(letter);
-    });
-
-    const matchingWordPosition = todaysWordArray.map((letter, i) => {
-      return todaysWordArray[i] === guessedWordArray[i] ? letter : false;
-    });
-
-    return {
-      guessedWord: currentWord,
-      guessedLetters: simpleMatchingLetters,
-      matchingWordPosition,
-    };
+    console.log(currentWord);
   };
 
   const dispatchAction = async (letter) => {
@@ -53,13 +28,15 @@ export default function Keyboard() {
         if (!isGameFinished && currentWord.length === 5 && !error.active) {
           // Checking if the word exists on Dictionary API
           try {
+            /*
             const data = await axios.get("/api/checkword", {
               params: {
                 query: currentWord,
               },
             });
+            */
 
-            dispatch({ type: "ENTER_WORD", payload: checkMatching() });
+            dispatch({ type: "ENTER_WORD", payload: currentWord });
           } catch (err) {
             dispatch({
               type: "SHOW_ERROR",
@@ -78,13 +55,6 @@ export default function Keyboard() {
     }
   };
 
-  const defineKeyClassName = (letter) => {
-    if (guessedPosition.includes(letter)) return styles.guessedPosition;
-    if (guessedLetters.includes(letter)) return styles.guessedLetter;
-    if (totalLetters.includes(letter)) return styles.incorrectGuessedLetter;
-    return "";
-  };
-
   return (
     <div className={styles.wrapper}>
       {letters.map((item) => {
@@ -94,9 +64,7 @@ export default function Keyboard() {
               return (
                 <button
                   key={letter}
-                  className={`${styles.keyboardKey} ${defineKeyClassName(
-                    letter
-                  )}`}
+                  className={`${styles.keyboardKey}`}
                   onClick={() => dispatchAction(letter)}
                 >
                   {letter}
