@@ -17,7 +17,17 @@ export default function Row({ number }) {
 
   const active = number === round;
   const todaysWordArray = todaysWord.split("");
-  console.log(currentWord, rows, round);
+
+  function defineClassName(value) {
+    switch (value) {
+      case true:
+        return styles.correctPosition;
+      case false:
+        return styles.incorrectLetter;
+      case "misplaced":
+        return styles.misplacedLetter;
+    }
+  }
 
   return (
     <div
@@ -25,11 +35,18 @@ export default function Row({ number }) {
         error.active && round === number && styles.error
       }`}
     >
-      {todaysWordArray.map((e, position) => (
-        <div key={`${number}${position}`} className={styles.letterBox}>
-          <CharacterTile char={wordShown.charAt(position)} />
-        </div>
-      ))}
+      {todaysWordArray.map((e, position) => {
+        const toggleClass = defineClassName(rows[number]?.match[position][1]);
+
+        return (
+          <div
+            key={`${number}${position}`}
+            className={`${styles.letterBox} ${toggleClass}`}
+          >
+            <CharacterTile char={wordShown.charAt(position)} />
+          </div>
+        );
+      })}
     </div>
   );
 }

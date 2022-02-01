@@ -4,6 +4,7 @@ export const Store = createContext();
 
 const initialState = {
   todaysWord: "",
+  wordCount: {},
   round: 0,
   currentWord: "",
   guessedCharacters: [],
@@ -37,11 +38,41 @@ const reducer = (state, action) => {
           (bool) => bool !== false
         );
         */
+
         // Adding the new word to the board
         // Including information about the matching positions
-        console.log("new row reducer", action.payload);
+        const newWord = state.currentWord;
+        const newWordArr = newWord.split("");
+        const todaysWordArr = state.todaysWord.split("");
+
+        const countArr = state.todaysWord.split("");
+
+        const strictMatch = [];
+        // check for strict match
+        todaysWordArr.forEach((ch, i) => {
+          // Checks if it's true, and removes it from the count array
+          if (newWord.charAt(i) === ch) {
+            strictMatch[i] = [newWord.charAt(i), true];
+            countArr[i] = undefined;
+          }
+        });
+
+        todaysWordArr.forEach((ch, i) => {
+          if (countArr.includes(newWordArr[i])) {
+            strictMatch[i] = [newWord.charAt(i), "misplaced"];
+            countArr.splice(countArr.indexOf(newWordArr[i]));
+          }
+        });
+
+        todaysWordArr.forEach((ch, i) => {
+          if (!strictMatch[i]) {
+            strictMatch[i] = [newWord.charAt(i), false];
+          }
+        });
+
         const newRow = {
-          wordTried: state.currentWord,
+          wordTried: newWord,
+          match: strictMatch,
         };
 
         if (isGameFinished) {
