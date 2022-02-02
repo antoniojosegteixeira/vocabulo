@@ -25,14 +25,25 @@
   background-color: rgb(158, 158, 158);
 }
 
-.guessedPosition {
+.correctPosition {
   background-color: rgb(24, 95, 24);
 }
 
-.guessedLetter {
-  background-color: rgb(173, 151, 28);
+.correctPosition:active {
+  background-color: rgb(16, 66, 16);
 }
 
-.incorrectGuessedLetter {
+.misplacedChar {
+  background-color: rgb(173, 151, 28);
+}
+.misplacedChar:active {
+  background-color: rgb(143, 123, 10);
+}
+
+.incorrectChar {
   background-color: rgb(46, 53, 49);
+}
+
+.incorrectChar:active {
+  background-color: rgb(25, 29, 27);
 }

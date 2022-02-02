@@ -4,10 +4,13 @@ export const Store = createContext();
 
 const initialState = {
   todaysWord: "",
-  wordCount: {},
   round: 0,
   currentWord: "",
-  guessedCharacters: [],
+  triedCharacters: {
+    wrong: [],
+    misplaced: [],
+    correct: [],
+  },
   rows: [],
   isGameFinished: false,
   win: false,
@@ -31,54 +34,77 @@ const reducer = (state, action) => {
       }
     case "ENTER_WORD":
       if (state.currentWord.length === 5) {
-        const isGameFinished = false;
-        // Checking if the game is finished
-        /*
-        const isGameFinished = action.payload.matchingWordPosition.every(
-          (bool) => bool !== false
-        );
-        */
-
         // Adding the new word to the board
         // Including information about the matching positions
         const newWord = state.currentWord;
         const newWordArr = newWord.split("");
         const todaysWordArr = state.todaysWord.split("");
-
         const countArr = state.todaysWord.split("");
 
+        // Matches array
         const strictMatch = [];
-        // check for strict match
+
+        // Guessed words
+        const triedCharacters = {
+          wrong: [],
+          misplaced: [],
+          correct: [],
+        };
+
+        // check for matches
         todaysWordArr.forEach((ch, i) => {
           // Checks if it's true, and removes it from the count array
           if (newWord.charAt(i) === ch) {
             strictMatch[i] = [newWord.charAt(i), true];
             countArr[i] = undefined;
+
+            triedCharacters.correct.push(newWord.charAt(i));
           }
         });
 
         todaysWordArr.forEach((ch, i) => {
           if (countArr.includes(newWordArr[i])) {
             strictMatch[i] = [newWord.charAt(i), "misplaced"];
-            countArr.splice(countArr.indexOf(newWordArr[i]));
+
+            triedCharacters.misplaced.push(newWord.charAt(i));
           }
         });
 
         todaysWordArr.forEach((ch, i) => {
           if (!strictMatch[i]) {
             strictMatch[i] = [newWord.charAt(i), false];
+            triedCharacters.wrong.push(newWord.charAt(i));
           }
         });
 
         const newRow = {
           wordTried: newWord,
-          match: strictMatch,
+          matches: strictMatch,
         };
+
+        // Checking if the game is finished
+        const matchingArray = strictMatch.map((e) => {
+          return e[1] === true ? true : false;
+        });
+        const isGameFinished = matchingArray.every((e) => e === true);
 
         if (isGameFinished) {
           // if the word is guessed right
           return {
             ...state,
+            currentWord: "",
+            rows: [...state.rows, newRow],
+            triedCharacters: {
+              wrong: [...state.triedCharacters.wrong, ...triedCharacters.wrong],
+              misplaced: [
+                ...state.triedCharacters.misplaced,
+                ...triedCharacters.misplaced,
+              ],
+              correct: [
+                ...state.triedCharacters.correct,
+                ...triedCharacters.correct,
+              ],
+            },
             isGameFinished: true,
             win: true,
           };
@@ -88,6 +114,17 @@ const reducer = (state, action) => {
             currentWord: "",
             round: state.round + 1,
             rows: [...state.rows, newRow],
+            triedCharacters: {
+              wrong: [...state.triedCharacters.wrong, ...triedCharacters.wrong],
+              misplaced: [
+                ...state.triedCharacters.misplaced,
+                ...triedCharacters.misplaced,
+              ],
+              correct: [
+                ...state.triedCharacters.correct,
+                ...triedCharacters.correct,
+              ],
+            },
           };
         }
       } else {

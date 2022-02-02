@@ -11,12 +11,26 @@ const letters = [
 
 export default function Keyboard() {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord, isGameFinished, todaysWord, rows, error } = state;
+  const {
+    round,
+    currentWord,
+    isGameFinished,
+    todaysWord,
+    rows,
+    error,
+    triedCharacters,
+  } = state;
 
   // Check matching ocurrences
-  const createRow = () => {
-    //
-    console.log(currentWord);
+  // ClassName for keyboard char color
+  const createRow = (char) => {
+    if (triedCharacters.correct.includes(char)) return styles.correctPosition;
+
+    if (triedCharacters.misplaced.includes(char)) return styles.misplacedChar;
+
+    if (triedCharacters.wrong.includes(char)) return styles.incorrectChar;
+
+    return "";
   };
 
   const dispatchAction = async (letter) => {
@@ -61,10 +75,11 @@ export default function Keyboard() {
         return (
           <div key={item} className={styles.row}>
             {item.map((letter) => {
+              const className = createRow(letter);
               return (
                 <button
                   key={letter}
-                  className={`${styles.keyboardKey}`}
+                  className={`${styles.keyboardKey} ${className}`}
                   onClick={() => dispatchAction(letter)}
                 >
                   {letter}

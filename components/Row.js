@@ -36,7 +36,7 @@ export default function Row({ number }) {
       }`}
     >
       {todaysWordArray.map((e, position) => {
-        const toggleClass = defineClassName(rows[number]?.match[position][1]);
+        const toggleClass = defineClassName(rows[number]?.matches[position][1]);
 
         return (
           <div
