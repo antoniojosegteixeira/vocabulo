@@ -19,7 +19,7 @@ export default function CharacterTile({ char, position, rowNumber }) {
   }
 
   function addAnimation() {
-    return win && active ? styles.jumpAnimation : "";
+    if (win && active) return styles.jumpAnimation;
   }
 
   // Checks if guess is at right position or just a simple guess
@@ -27,10 +27,8 @@ export default function CharacterTile({ char, position, rowNumber }) {
   const toggleAnimation = addAnimation();
   return (
     <div
-      className={`${styles.letterBox} ${toggleAnimation} ${
-        isGameFinished && active && toggleAnimation
-      }`}
-      style={{ animationDelay: `${0.2 * position}s` }}
+      className={`${styles.letterBox} ${toggleAnimation} `}
+      style={{ animationDelay: `${0.2 * position + 0.7}s` }}
     >
       <div className={`${styles.insideTile} ${toggleClass}`}>
         <span>{char}</span>

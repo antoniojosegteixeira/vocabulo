@@ -22,7 +22,7 @@
 
 .visible {
   display: flex;
-  animation: showUp 0.5s ease-in-out 1.8s forwards;
+  animation: showUp 0.5s ease-in-out 2s forwards;
 }
 
 .modalBox > h1 {

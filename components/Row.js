@@ -15,7 +15,6 @@ export default function Row({ number }) {
     ? currentWord
     : "";
 
-  const active = number === round;
   const todaysWordArray = todaysWord.split("");
 
   return (

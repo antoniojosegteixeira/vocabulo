@@ -5,6 +5,7 @@
 }
 
 .letterBox {
+  position: relative;
   margin: 2px;
   width: 20%;
   min-height: 60px;
@@ -17,13 +18,14 @@
   user-select: none;
 }
 
-.jumpAnimation {
-  animation: jump 0.5s ease-in-out forwards;
-}
-
 .insideTile {
   width: 100%;
   height: 100%;
+  position: absolute;
+}
+
+.jumpAnimation {
+  animation: jump 0.5s ease-in-out forwards;
 }
 
 .win {
