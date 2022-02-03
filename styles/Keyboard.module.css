@@ -15,7 +15,7 @@
   min-width: 25px;
   font-size: small;
   border-radius: 3px;
-  background-color: rgb(138, 138, 138);
+  background-color: #eaeae0;
   text-align: center;
   margin: 3px;
   text-transform: uppercase;
@@ -29,26 +29,26 @@
 }
 
 .correctPosition {
-  background-color: rgb(24, 95, 24);
+  background-color: var(--main-green);
 }
 
 .correctPosition:active {
-  background-color: rgb(16, 66, 16);
+  background-color: rgb(22, 95, 22);
 }
 
 .misplacedChar {
-  background-color: rgb(173, 151, 28);
+  background-color: var(--main-yellow);
 }
 .misplacedChar:active {
-  background-color: rgb(143, 123, 10);
+  background-color: rgb(177, 137, 6);
 }
 
 .incorrectChar {
-  background-color: rgb(46, 53, 49);
+  background-color: rgba(133, 133, 133, 0.787);
 }
 
 .incorrectChar:active {
-  background-color: rgb(25, 29, 27);
+  background-color: rgba(104, 104, 104, 0.87);
 }
 
 @media (min-width: 380px) {

@@ -11,7 +11,15 @@ export default function ShareButton({ shareText }) {
 
   return (
     <button onClick={handleClick} className={styles.shareButton}>
-      {isClicked ? "COPIADO!" : "COMPARTILHE"}
+      {isClicked ? (
+        <div>
+          <span>Copiado!</span>
+        </div>
+      ) : (
+        <div>
+          <i className="fas fa-share-alt"></i> <span> Compartilhe</span>
+        </div>
+      )}
     </button>
   );
 }

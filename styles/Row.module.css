@@ -9,7 +9,8 @@
   margin: 2px;
   width: 20%;
   min-height: 60px;
-  border: 2px solid rgba(126, 126, 126, 0.164);
+  border: 2px solid #eaeae06b;
+  background-color: rgba(128, 128, 128, 0.164);
   text-transform: uppercase;
   text-align: center;
   font-size: 2rem;
@@ -29,40 +30,40 @@
 }
 
 .win {
-  background: rgb(0, 92, 0);
+  background: var(--main-green);
 }
 
 .correctPosition {
-  background-color: rgb(24, 95, 24);
+  background-color: var(--main-green);
 }
 
 .misplacedLetter {
-  background-color: rgb(173, 151, 28);
+  background-color: var(--main-yellow);
 }
 
 .incorrectLetter {
-  background-color: rgb(32, 32, 32);
+  background-color: rgba(26, 26, 26, 0.541);
 }
 
 .error > .letterBox {
-  animation: shake 0.3s ease-in-out forwards;
+  animation: shake 0.3s ease-in-out 0s forwards !important;
 }
 
 @keyframes shake {
   0% {
-    border: 1px solid rgb(182, 36, 36);
+    border: 2px solid rgb(182, 36, 36);
     transform: translateX(-4px);
   }
   25% {
-    border: 1px solid rgb(182, 36, 36);
+    border: 2px solid rgb(182, 36, 36);
     transform: translateX(4px);
   }
   50% {
-    border: 1px solid rgb(182, 36, 36);
+    border: 2px solid rgb(182, 36, 36);
     transform: translateX(-4px);
   }
   75% {
-    border: 1px solid rgb(182, 36, 36);
+    border: 2px solid rgb(182, 36, 36);
     transform: translateX(4px);
   }
   100% {
