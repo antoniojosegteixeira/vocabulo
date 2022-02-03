@@ -6,7 +6,7 @@ import axios from "axios";
 const letters = [
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
   ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ç"],
-  ["enter", "z", "x", "c", "v", "b", "n", "m", "apagar"],
+  ["enter", "z", "x", "c", "v", "b", "n", "m", "delete"],
 ];
 
 export default function Keyboard() {
@@ -69,6 +69,17 @@ export default function Keyboard() {
     }
   };
 
+  const KeyboardCharacter = ({ letter }) => {
+    switch (letter) {
+      case "enter":
+        return <i className="fas fa-check" style={{ padding: "0 0.2rem" }}></i>;
+      case "delete":
+        return <i className="fas fa-backspace"></i>;
+      default:
+        return letter;
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       {letters.map((item) => {
@@ -76,13 +87,14 @@ export default function Keyboard() {
           <div key={item} className={styles.row}>
             {item.map((letter) => {
               const className = createRow(letter);
+
               return (
                 <button
                   key={letter}
                   className={`${styles.keyboardKey} ${className}`}
                   onClick={() => dispatchAction(letter)}
                 >
-                  {letter}
+                  <KeyboardCharacter letter={letter} />
                 </button>
               );
             })}

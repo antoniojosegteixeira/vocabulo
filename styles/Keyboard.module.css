@@ -1,5 +1,7 @@
 .wrapper {
-  width: 100%;
+  width: 100vw;
+  height: 30vh;
+  max-width: 100%;
 }
 
 .row {
@@ -9,16 +11,17 @@
 }
 
 .keyboardKey {
-  padding: 1.2rem 0.8rem;
-  min-width: 45px;
+  padding: 1.2rem 0.4rem;
+  min-width: 25px;
+  font-size: small;
   border-radius: 3px;
   background-color: rgb(138, 138, 138);
   text-align: center;
   margin: 3px;
   text-transform: uppercase;
   color: rgb(0, 0, 0);
-  font-size: large;
   user-select: none;
+  overflow: hidden;
 }
 
 .keyboardKey:active {
@@ -46,4 +49,20 @@
 
 .incorrectChar:active {
   background-color: rgb(25, 29, 27);
+}
+
+@media (min-width: 380px) {
+  .keyboardKey {
+    padding: 1.1rem 0.6rem;
+    min-width: 30px;
+    font-size: medium;
+  }
+}
+
+@media (min-width: 550px) {
+  .keyboardKey {
+    padding: 1.2rem 0.8rem;
+    min-width: 45px;
+    font-size: large;
+  }
 }

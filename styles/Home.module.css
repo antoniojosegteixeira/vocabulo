@@ -1,6 +1,7 @@
 .container {
+  position: relative;
   margin: 0rem auto;
-  max-width: 550px;
+  height: 70vh;
 }
 
 .title {
