@@ -20,7 +20,7 @@
 
 .visible {
   display: flex;
-  animation: showUp 0.5s ease-in-out forwards;
+  animation: showUp 0.5s ease-in-out 1s forwards;
 }
 
 .modalBox > h1 {
@@ -81,6 +81,10 @@
   background-color: rgb(204, 204, 204);
   border-radius: 10px;
   cursor: pointer;
+}
+
+.shareButton:active {
+  background-color: rgb(170, 170, 170);
 }
 
 @keyframes showUp {

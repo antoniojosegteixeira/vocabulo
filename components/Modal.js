@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState, useCallback } from "react";
 import styles from "../styles/Modal.module.css";
 import { Store } from "../utils/Store";
-import { useRouter } from "next/router";
+import ShareButton from "./ShareButton";
 
 export default function Modal() {
   const { state, dispatch } = useContext(Store);
@@ -68,12 +68,7 @@ jogue agora em https..`;
                 </span>
               );
             })}
-            <button
-              onClick={() => navigator.clipboard.writeText(shareText)}
-              className={styles.shareButton}
-            >
-              COMPARTILHE
-            </button>
+            <ShareButton shareText={shareText} />
           </div>
         </div>
       </div>
