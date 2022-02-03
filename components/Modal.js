@@ -2,6 +2,7 @@ import { useEffect, useContext, useState, useCallback } from "react";
 import styles from "../styles/Modal.module.css";
 import { Store } from "../utils/Store";
 import ShareButton from "./ShareButton";
+import Timer from "./Timer";
 
 export default function Modal() {
   const { state, dispatch } = useContext(Store);
@@ -68,7 +69,10 @@ jogue agora em https..`;
                 </span>
               );
             })}
-            <ShareButton shareText={shareText} />
+            <div className={styles.info}>
+              <Timer />
+              <ShareButton shareText={shareText} />
+            </div>
           </div>
         </div>
       </div>
