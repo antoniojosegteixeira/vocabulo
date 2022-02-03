@@ -18,33 +18,21 @@ export default function Row({ number }) {
   const active = number === round;
   const todaysWordArray = todaysWord.split("");
 
-  function defineClassName(value) {
-    switch (value) {
-      case true:
-        return styles.correctPosition;
-      case false:
-        return styles.incorrectLetter;
-      case "misplaced":
-        return styles.misplacedLetter;
-    }
-  }
-
   return (
     <div
-      className={`${styles.row} ${isGameFinished && active && styles.win}  ${
+      className={`${styles.row}  ${
         error.active && round === number && styles.error
       }`}
     >
       {todaysWordArray.map((e, position) => {
-        const toggleClass = defineClassName(rows[number]?.matches[position][1]);
-
         return (
-          <div
+          <CharacterTile
+            char={wordShown.charAt(position)}
+            position={position}
+            rows={rows}
+            rowNumber={number}
             key={`${number}${position}`}
-            className={`${styles.letterBox} ${toggleClass}`}
-          >
-            <CharacterTile char={wordShown.charAt(position)} />
-          </div>
+          />
         );
       })}
     </div>

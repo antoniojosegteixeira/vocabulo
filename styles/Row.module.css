@@ -17,6 +17,10 @@
   user-select: none;
 }
 
+.jumpAnimation {
+  animation: jump 0.5s ease-in-out forwards;
+}
+
 .insideTile {
   width: 100%;
   height: 100%;
@@ -61,5 +65,14 @@
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+@keyframes jump {
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }

@@ -6,7 +6,7 @@ import axios from "axios";
 const letters = [
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
   ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ç"],
-  ["enter", "z", "x", "c", "v", "b", "n", "m", "delete"],
+  ["enter", "z", "x", "c", "v", "b", "n", "m", "apagar"],
 ];
 
 export default function Keyboard() {
