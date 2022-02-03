@@ -1,4 +1,11 @@
 .gameWrapper {
   max-width: 350px;
   margin: 0.4rem auto;
+  padding: 0 0.4rem;
+}
+
+@media (min-width: 400px) {
+  .gameWrapper {
+    padding: 0rem;
+  }
 }
