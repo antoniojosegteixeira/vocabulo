@@ -15,7 +15,7 @@
   height: fit-content;
   max-width: 600px;
   width: 100%;
-  background-color: #163555;
+  background-color: #304b64;
   margin: 3rem 1rem;
   padding: 2rem;
   border-radius: 10px;
@@ -34,33 +34,25 @@
 }
 
 .statBox {
-  display: flex;
-  margin-top: 15px;
-  justify-content: center;
-}
-
-.statBox > div {
-  width: fit-content;
+  position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
   justify-content: center;
-  border-radius: 10px;
-  padding: 5px;
+  align-items: center;
 }
 
-.statBox > div > span {
-  font-size: 40;
-  display: inline-flex;
-  justify-content: center;
+.squaresGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 30px);
+  grid-template-rows: repeat(6, 30px);
+  grid-gap: 3px;
 }
 
 .square {
-  width: 40px;
-  height: 40px;
   background-color: rgb(35, 177, 35);
   border-radius: 2px;
   border: 2px solid rgb(30, 31, 34);
-  margin: 3px;
 }
 
 .square.incorrect {
@@ -87,7 +79,7 @@
   padding: 20px;
   color: rgb(7, 9, 19);
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   background-color: rgb(204, 204, 204);
   border-radius: 10px;
   cursor: pointer;
@@ -129,9 +121,14 @@
     font-size: 2rem;
   }
 
-  .square {
-    width: 47px;
-    height: 47px;
+  .squaresGrid {
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(6, 40px);
+    grid-gap: 3px;
+  }
+
+  .shareButton {
+    font-size: 1.4rem;
   }
 }
 

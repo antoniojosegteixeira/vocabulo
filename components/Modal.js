@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, useCallback } from "react";
+import React, { useEffect, useContext, useState, useCallback } from "react";
 import styles from "../styles/Modal.module.css";
 import { Store } from "../utils/Store";
 import NoSsr from "./NoSsr";
@@ -35,7 +35,7 @@ export default function Modal() {
 
 ${text}
 
-jogue agora em https..`;
+jogue agora em https://vocabulo.herokuapp.com/`;
 
     setShareText(fullText);
   }, [rows]);
@@ -49,33 +49,29 @@ jogue agora em https..`;
       <div className={styles.modalBox}>
         <h1>{win ? "Muito bem!" : "Não foi dessa vez..."}</h1>
         <div className={styles.statBox}>
-          <div>
+          <div className={styles.squaresGrid}>
             {rows.map((e, i) => {
-              return (
-                <span key={`${e} ${i}`}>
-                  {e.matches.map((e, i) => {
-                    return (
-                      <div
-                        className={`${styles.square} ${
-                          e[1] === "misplaced"
-                            ? styles.misplaced
-                            : e[1] === true
-                            ? ""
-                            : styles.incorrect
-                        }`}
-                        key={`${e}${i}`}
-                      ></div>
-                    );
-                  })}
-                </span>
-              );
+              return e.matches.map((e, i) => {
+                return (
+                  <div
+                    className={`${styles.square} ${
+                      e[1] === "misplaced"
+                        ? styles.misplaced
+                        : e[1] === true
+                        ? ""
+                        : styles.incorrect
+                    }`}
+                    key={`${e}${i}`}
+                  ></div>
+                );
+              });
             })}
-            <div className={styles.info}>
-              <NoSsr>
-                <Timer />
-              </NoSsr>
-              <ShareButton shareText={shareText} />
-            </div>
+          </div>
+          <div className={styles.info}>
+            <NoSsr>
+              <Timer />
+            </NoSsr>
+            <ShareButton shareText={shareText} />
           </div>
         </div>
       </div>
