@@ -5,7 +5,7 @@ import CharacterTile from "./CharacterTile";
 
 export default function Row({ number }) {
   const { state, dispatch } = useContext(Store);
-  const { round, currentWord, isGameFinished, todaysWord, rows, error } = state;
+  const { round, currentWord, todaysWord, rows, error } = state;
 
   // Set shown word
 

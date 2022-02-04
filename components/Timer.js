@@ -2,15 +2,9 @@ import Countdown from "react-countdown";
 import styles from "../styles/Modal.module.css";
 
 export default function Timer() {
-  const d = new Date();
-  const utcDate = new Date(
-    d.getUTCFullYear(),
-    d.getUTCMonth(),
-    d.getUTCDate(),
-    d.getUTCHours(),
-    d.getUTCMinutes(),
-    d.getUTCSeconds()
-  );
+  const date = new Date();
+  date.setDate(date.getDate() + 1);
+  date.setHours(0, 0, 0, 0);
 
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -33,7 +27,7 @@ export default function Timer() {
       <i className={`fas fa-stopwatch ${styles.clockIcon}`}></i>
       <div className={styles.timerInfo}>
         <span>Tempo até a próxima palavra</span>
-        <Countdown date={utcDate} renderer={renderer}></Countdown>
+        <Countdown date={date} renderer={renderer}></Countdown>
       </div>
     </div>
   );

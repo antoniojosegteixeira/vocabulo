@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState, useCallback } from "react";
 import styles from "../styles/Modal.module.css";
 import { Store } from "../utils/Store";
+import NoSsr from "./NoSsr";
 import ShareButton from "./ShareButton";
 import Timer from "./Timer";
 
@@ -70,7 +71,9 @@ jogue agora em https..`;
               );
             })}
             <div className={styles.info}>
-              <Timer />
+              <NoSsr>
+                <Timer />
+              </NoSsr>
               <ShareButton shareText={shareText} />
             </div>
           </div>
