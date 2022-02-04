@@ -55,6 +55,11 @@
   border: 2px solid rgb(30, 31, 34);
 }
 
+.square.empty {
+  background-color: rgba(56, 56, 56, 0.301);
+  border: 2px solid rgba(30, 31, 34, 0.37);
+}
+
 .square.incorrect {
   background-color: rgb(182, 36, 36);
 }

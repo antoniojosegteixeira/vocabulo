@@ -66,6 +66,14 @@ jogue agora em https://vocabulo.herokuapp.com/`;
                 );
               });
             })}
+            {[...Array((6 - rows.length) * 5).keys()].map((e, i) => {
+              return (
+                <div
+                  key={"empty" + i}
+                  className={`${styles.square} ${styles.empty}`}
+                ></div>
+              );
+            })}
           </div>
           <div className={styles.info}>
             <NoSsr>
@@ -78,3 +86,23 @@ jogue agora em https://vocabulo.herokuapp.com/`;
     </div>
   );
 }
+
+/*
+
+            {rows.map((e, i) => {
+              return e.matches.map((e, i) => {
+                return (
+                  <div
+                    className={`${styles.square} ${
+                      e[1] === "misplaced"
+                        ? styles.misplaced
+                        : e[1] === true
+                        ? ""
+                        : styles.incorrect
+                    }`}
+                    key={`${e}${i}`}
+                  ></div>
+                );
+              });
+            })}
+            */
