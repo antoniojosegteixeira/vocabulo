@@ -12,6 +12,10 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
             referrerpolicy="no-referrer"
           />
+          <meta
+            name="description"
+            content="Jogo de palavras diário e gratuito"
+          ></meta>
         </Head>
         <body>
           <Main />
