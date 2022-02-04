@@ -8,7 +8,7 @@ export default function GameTable() {
   const { round } = state;
 
   return (
-    <div className={styles.gameWrapper}>
+    <div className={styles.gameTable}>
       <Row number={0} />
       <Row number={1} />
       <Row number={2} />

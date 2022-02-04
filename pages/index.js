@@ -25,16 +25,14 @@ export default function Home({ data }) {
   }, [round, dispatch]);
 
   return (
-    <>
+    <div className={styles.gameWrapper}>
       <Modal />
-      <div className={styles.container}>
-        <h1 className={styles.title}>VOCÁBULO</h1>
-        <hr className={styles.solid}></hr>
-        <Notification />
-        <GameTable />
-        <Keyboard />
-      </div>
-    </>
+      <h1 className={styles.title}>VOCÁBULO</h1>
+      <hr className={styles.solid}></hr>
+      <Notification />
+      <GameTable />
+      <Keyboard />
+    </div>
   );
 }
 

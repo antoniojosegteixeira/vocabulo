@@ -1,11 +1,16 @@
-.gameWrapper {
-  max-width: 350px;
+.gameTable {
   margin: 0.4rem auto;
   padding: 0 0.4rem;
+  border: 2px solid red;
+  height: 100%;
+  max-height: 450px;
+  position: relative;
+  display: grid;
+  grid-row-gap: 2px;
 }
 
 @media (min-width: 400px) {
-  .gameWrapper {
+  .gameTable {
     padding: 0rem;
   }
 }

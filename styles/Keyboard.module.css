@@ -1,6 +1,7 @@
 .wrapper {
   width: 100vw;
-  height: 30vh;
+  min-height: 190px;
+  border: 4px solid yellow;
 }
 
 .row {

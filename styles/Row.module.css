@@ -1,28 +1,36 @@
 .row {
-  width: 100%;
-  display: inline-flex;
+  width: 70vw;
+  max-width: 350px;
   vertical-align: middle;
+  justify-content: center;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 2px;
 }
 
 .letterBox {
-  position: relative;
-  margin: 2px;
-  width: 20%;
-  min-height: 60px;
+  width: 100%;
+  min-height: 20px;
   border: 2px solid #eaeae06b;
   background-color: rgba(128, 128, 128, 0.164);
   text-transform: uppercase;
   text-align: center;
-  font-size: 2rem;
-  line-height: 50px;
+  font-size: 1.4rem;
+  line-height: 20px;
   overflow: hidden;
   user-select: none;
+  position: relative;
 }
 
 .insideTile {
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20%;
 }
 
 .jumpAnimation {
@@ -47,6 +55,12 @@
 
 .error > .letterBox {
   animation: shake 0.3s ease-in-out 0s forwards !important;
+}
+
+@media (min-width: 400px) {
+  .letterBox {
+    font-size: 2rem;
+  }
 }
 
 @keyframes shake {
