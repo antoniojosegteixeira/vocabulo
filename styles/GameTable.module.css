@@ -1,7 +1,6 @@
 .gameTable {
   margin: 0.4rem auto;
   padding: 0 0.4rem;
-  border: 2px solid red;
   height: 100%;
   max-height: 450px;
   position: relative;

@@ -1,7 +1,6 @@
 .wrapper {
   width: 100vw;
-  min-height: 190px;
-  border: 4px solid yellow;
+  min-height: 200px;
 }
 
 .row {
@@ -33,14 +32,14 @@
 }
 
 .correctPosition:active {
-  background-color: rgb(22, 95, 22);
+  background-color: rgb(28, 92, 28);
 }
 
 .misplacedChar {
   background-color: var(--main-yellow);
 }
 .misplacedChar:active {
-  background-color: rgb(177, 137, 6);
+  background-color: rgb(173, 138, 22);
 }
 
 .incorrectChar {

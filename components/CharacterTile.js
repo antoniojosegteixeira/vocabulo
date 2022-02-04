@@ -8,7 +8,6 @@ export default function CharacterTile({ char, position, rowNumber }) {
   const active = rowNumber === round;
 
   function defineClassName() {
-    console.log(rows[rowNumber]);
     switch (rows[rowNumber]?.matches[position][1]) {
       case true:
         return styles.correctPosition;
