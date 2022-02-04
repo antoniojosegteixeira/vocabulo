@@ -42,12 +42,14 @@ export default function Keyboard() {
         if (!isGameFinished && currentWord.length === 5 && !error.active) {
           // Checking if the word exists on Dictionary API
           try {
+            /*
             const data = await axios.get("/api/checkword", {
               params: {
                 query: currentWord,
               },
             });
-            if (data) dispatch({ type: "ENTER_WORD", payload: currentWord });
+            if (data)
+            */ dispatch({ type: "ENTER_WORD", payload: currentWord });
           } catch (err) {
             dispatch({
               type: "SHOW_ERROR",

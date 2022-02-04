@@ -51,22 +51,24 @@ const reducer = (state, action) => {
           correct: [],
         };
 
+        todaysWordArr.forEach((ch, i) => {
+          if (countArr.includes(newWordArr[i])) {
+            console.log(countArr, "inclui", newWordArr[i]);
+            strictMatch[i] = [newWord.charAt(i), "misplaced"];
+
+            triedCharacters.misplaced.push(newWord.charAt(i));
+          }
+        });
+
         // check for matches
         todaysWordArr.forEach((ch, i) => {
           // Checks if it's true, and removes it from the count array
           if (newWord.charAt(i) === ch) {
+            console.log(newWord.charAt(i), "é igual a", ch);
             strictMatch[i] = [newWord.charAt(i), true];
             countArr[i] = undefined;
 
             triedCharacters.correct.push(newWord.charAt(i));
-          }
-        });
-
-        todaysWordArr.forEach((ch, i) => {
-          if (countArr.includes(newWordArr[i])) {
-            strictMatch[i] = [newWord.charAt(i), "misplaced"];
-
-            triedCharacters.misplaced.push(newWord.charAt(i));
           }
         });
 
