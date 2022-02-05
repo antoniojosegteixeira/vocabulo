@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
+import Head from "next/head";
 import db from "../utils/db";
 import Word from "../models/Word";
 import styles from "../styles/Home.module.css";
@@ -27,23 +28,28 @@ export default function Home({ data }) {
   }, [round, dispatch]);
 
   return (
-    <div className={styles.gameWrapper}>
-      <Modal />
-      <Instructions show={show} setShow={setShow} />
-      <div className={styles.titleContainer}>
-        <button
-          onClick={() => setShow(true)}
-          className={styles.openInstructions}
-        >
-          <i className="fas fa-question-circle"></i>
-        </button>
-        <h1 className={styles.title}>VOCÁBULO</h1>
+    <>
+      <Head>
+        <title>Vocábulo</title>
+      </Head>
+      <div className={styles.gameWrapper}>
+        <Modal />
+        <Instructions show={show} setShow={setShow} />
+        <div className={styles.titleContainer}>
+          <button
+            onClick={() => setShow(true)}
+            className={styles.openInstructions}
+          >
+            <i className="fas fa-question-circle"></i>
+          </button>
+          <h1 className={styles.title}>VOCÁBULO</h1>
+        </div>
+        <hr className={styles.solid}></hr>
+        <Notification />
+        <GameTable />
+        <Keyboard />
       </div>
-      <hr className={styles.solid}></hr>
-      <Notification />
-      <GameTable />
-      <Keyboard />
-    </div>
+    </>
   );
 }
 
