@@ -12,6 +12,7 @@
 }
 
 .modalBox {
+  position: relative;
   height: fit-content;
   max-width: 600px;
   width: 100%;
@@ -25,6 +26,27 @@
 .visible {
   display: flex;
   animation: showUp 0.5s ease-in-out 2s forwards;
+}
+
+.quickVisible {
+  display: flex;
+  animation: showUp 0.5s ease-in-out forwards;
+}
+
+.closeModal {
+  background-color: transparent;
+  font-size: 1.8rem;
+  color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 5px;
+}
+
+.closeModal:hover {
+  transform: scale(1.15);
 }
 
 .modalBox > h1 {
@@ -119,6 +141,10 @@
   display: flex;
   flex-direction: column;
   padding-left: 1rem;
+}
+
+.openInstructions:hover {
+  transform: scale(1.15);
 }
 
 @media (min-width: 400px) {

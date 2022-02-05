@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 import db from "../utils/db";
 import Word from "../models/Word";
@@ -7,10 +7,12 @@ import Keyboard from "../components/Keyboard";
 import GameTable from "../components/GameTable";
 import Notification from "../components/Notification";
 import Modal from "../components/Modal";
+import Instructions from "../components/Instructions";
 
 export default function Home({ data }) {
   const { state, dispatch } = useContext(Store);
   const { round } = state;
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -27,7 +29,16 @@ export default function Home({ data }) {
   return (
     <div className={styles.gameWrapper}>
       <Modal />
-      <h1 className={styles.title}>VOCÁBULO</h1>
+      <Instructions show={show} setShow={setShow} />
+      <div className={styles.titleContainer}>
+        <button
+          onClick={() => setShow(true)}
+          className={styles.openInstructions}
+        >
+          <i className="fas fa-question-circle"></i>
+        </button>
+        <h1 className={styles.title}>VOCÁBULO</h1>
+      </div>
       <hr className={styles.solid}></hr>
       <Notification />
       <GameTable />

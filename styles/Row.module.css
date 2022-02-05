@@ -56,7 +56,20 @@
   animation: shake 0.3s ease-in-out 0s forwards !important;
 }
 
+.exampleRow {
+  position: relative;
+  display: grid;
+  height: 40px;
+  grid-template-columns: repeat(5, 40px);
+  grid-gap: 2px;
+  justify-content: center;
+}
+
 @media (min-width: 400px) {
+  .exampleRow {
+    height: 50px;
+    grid-template-columns: repeat(5, 50px);
+  }
   .letterBox {
     font-size: 2rem;
   }
