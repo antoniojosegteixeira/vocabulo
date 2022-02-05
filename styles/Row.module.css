@@ -73,6 +73,9 @@
   .letterBox {
     font-size: 2rem;
   }
+  .row {
+    width: 80vw;
+  }
 }
 
 @keyframes shake {

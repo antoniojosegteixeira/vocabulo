@@ -1,6 +1,6 @@
 .wrapper {
   width: 100vw;
-  min-height: 200px;
+  min-height: 175px;
 }
 
 .row {
@@ -10,7 +10,7 @@
 }
 
 .keyboardKey {
-  padding: 1.2rem 0.4rem;
+  padding: 1.1rem 0.4rem;
   min-width: 25px;
   font-size: small;
   border-radius: 3px;
@@ -52,9 +52,13 @@
 
 @media (min-width: 380px) {
   .keyboardKey {
-    padding: 1.1rem 0.6rem;
+    padding: 1.3rem 0.6rem;
     min-width: 30px;
     font-size: medium;
+  }
+
+  .wrapper {
+    min-height: 200px;
   }
 }
 
@@ -63,5 +67,9 @@
     padding: 1.2rem 0.8rem;
     min-width: 45px;
     font-size: large;
+  }
+
+  .wrapper {
+    min-height: 200px;
   }
 }

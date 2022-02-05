@@ -143,10 +143,6 @@
   padding-left: 1rem;
 }
 
-.openInstructions:hover {
-  transform: scale(1.15);
-}
-
 @media (min-width: 400px) {
   .modalBox > h1 {
     font-size: 2rem;
