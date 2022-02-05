@@ -16,6 +16,7 @@ export default class MyDocument extends Document {
             name="description"
             content="Jogo de palavras diário e gratuito"
           ></meta>
+          <link rel="icon" href="/icon.jpg"></link>
         </Head>
         <body>
           <Main />
