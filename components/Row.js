@@ -15,25 +15,24 @@ export default function Row({ number }) {
     ? currentWord
     : "";
 
-  const todaysWordArray = todaysWord.split("");
-
   return (
     <div
       className={`${styles.row}  ${
         error.active && round === number && styles.error
       }`}
     >
-      {todaysWordArray.map((e, position) => {
-        return (
-          <CharacterTile
-            char={wordShown.charAt(position)}
-            position={position}
-            rows={rows}
-            rowNumber={number}
-            key={`${number}${position}`}
-          />
-        );
-      })}
+      {todaysWord.length > 1 &&
+        todaysWord.split("").map((e, position) => {
+          return (
+            <CharacterTile
+              char={wordShown.charAt(position)}
+              position={position}
+              rows={rows}
+              rowNumber={number}
+              key={`${number}${position}`}
+            />
+          );
+        })}
     </div>
   );
 }
