@@ -1,25 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 import Head from "next/head";
-import db from "../utils/db";
-import Word from "../models/Word";
 import styles from "../styles/Home.module.css";
 import Keyboard from "../components/Keyboard";
 import GameTable from "../components/GameTable";
 import Notification from "../components/Notification";
 import Modal from "../components/Modal";
 import Instructions from "../components/Instructions";
+import axios from "axios";
 
-export default function Home({ data }) {
+export default function Home() {
   const { state, dispatch } = useContext(Store);
   const { round } = state;
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (data) {
-      dispatch({ type: "TODAYS_WORD", payload: data });
+    async function getWord() {
+      const { data } = await axios.get("/api/getword/");
+      if (data) {
+        dispatch({ type: "TODAYS_WORD", payload: data });
+      }
     }
-  }, [data, dispatch]);
+
+    getWord();
+  }, [dispatch]);
 
   useEffect(() => {
     if (round > 5) {
@@ -51,17 +55,4 @@ export default function Home({ data }) {
       </div>
     </>
   );
-}
-
-export async function getStaticProps() {
-  await db.connect();
-  const date = new Date().getDate();
-  const { word } = await Word.findOne({ date }).lean();
-  await db.disconnect();
-
-  return {
-    props: {
-      data: word,
-    },
-  };
 }

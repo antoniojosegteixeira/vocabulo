@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-  const { query } = req.query;
   try {
+    const { query } = req.query;
     const { data } = await axios.get(
       `https://significado.herokuapp.com/${query}`
     );
